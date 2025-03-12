@@ -74,10 +74,10 @@ button {
   @apply my-1;
 }
 .markdown-content pre {
-  @apply bg-gray-100 dark:bg-blue-800 p-4 rounded my-3 overflow-auto;
+  @apply bg-gray-100 dark:bg-slate-800 p-4 rounded my-3 overflow-auto;
 }
 .markdown-content code {
-  @apply font-mono text-sm bg-gray-100 dark:bg-blue-800 px-1 py-0.5 rounded;
+  @apply font-mono text-sm bg-gray-100 dark:bg-slate-800 px-1 py-0.5 rounded;
 }
 .markdown-content pre code {
   @apply bg-transparent p-0;
@@ -86,12 +86,12 @@ button {
   @apply border-l-4 border-gray-300 dark:border-gray-600 pl-3 py-1 my-2 text-gray-700 dark:text-gray-300;
 }
 .markdown-content a {
-  @apply text-blue-600 dark:text-blue-400 hover:underline;
+  @apply text-slate-600 dark:text-slate-400 hover:underline;
 }
 
 /* Focus styles for accessibility */
 button:focus, textarea:focus, input:focus, select:focus {
-  @apply outline-none ring-2 ring-blue-500;
+  @apply outline-none ring-2 ring-slate-500;
 }
 
 /* Chat bubbles styling */
@@ -103,8 +103,8 @@ button:focus, textarea:focus, input:focus, select:focus {
 
 /* Message bubbles animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: tranblueY(10px); }
-  to { opacity: 1; transform: tranblueY(0); }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .chat-message {

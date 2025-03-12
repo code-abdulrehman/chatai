@@ -59,31 +59,48 @@ export default function Terminal({ logs = [], isOpen, setIsOpen }) {
       
       const content = log.content;
       
-      // Check for token information in logs
-      if (content.includes('tokens')) {
-        // Extract token counts
-        const tokenMatch = content.match(/(\d+)\s*tokens/);
-        if (tokenMatch && tokenMatch[1]) {
-          const tokens = parseInt(tokenMatch[1], 10);
-          totalTokens += tokens;
-          
-          // Determine if prompt or completion tokens
-          if (content.includes('User message') || content.includes('prompt')) {
-            promptTokens += tokens;
-          } else if (content.includes('Response') || content.includes('completion') || content.includes('generated')) {
-            completionTokens += tokens;
-          }
+      // Handle special metrics update format
+      if (content.startsWith('METRICS_UPDATE|')) {
+        const parts = content.split('|');
+        if (parts.length >= 5) {
+          promptTokens += parseInt(parts[1], 10) || 0;
+          completionTokens += parseInt(parts[2], 10) || 0;
+          totalTokens += parseInt(parts[3], 10) || 0;
+          totalTime += parseFloat(parts[4]) || 0;
+          return;
         }
       }
       
-      // Check for time information
-      const timeMatch = content.match(/(\d+\.?\d*)s/);
-      if (timeMatch && timeMatch[1]) {
-        totalTime += parseFloat(timeMatch[1]);
+      // Check for token information in logs
+      if (content.includes('tokens')) {
+        // Extract token counts
+        const totalMatch = content.match(/(\d+)\s*total/);
+        const promptMatch = content.match(/(\d+)\s*prompt/);
+        const completionMatch = content.match(/(\d+)\s*completion/);
+        
+        if (totalMatch && totalMatch[1]) {
+          totalTokens += parseInt(totalMatch[1], 10);
+        }
+        
+        if (promptMatch && promptMatch[1]) {
+          promptTokens += parseInt(promptMatch[1], 10);
+        }
+        
+        if (completionMatch && completionMatch[1]) {
+          completionTokens += parseInt(completionMatch[1], 10);
+        }
+      }
+      
+      // Extract response time
+      if (content.includes('received in')) {
+        const timeMatch = content.match(/received in (\d+\.?\d*)s/);
+        if (timeMatch && timeMatch[1]) {
+          totalTime += parseFloat(timeMatch[1]);
+        }
       }
       
       // Count messages
-      if (content.includes('User message') || content.includes('Response completed')) {
+      if (content.includes('User message sent')) {
         messageCount++;
       }
     });

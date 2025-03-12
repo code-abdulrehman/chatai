@@ -207,9 +207,27 @@ function Page() {
     };
   }, [isMounted]);
 
+  const updateChatTitle = (title) => {
+    setConversations(prev => {
+      const updatedConversations = prev.map(conv => {
+        if (conv.id === activeConversationId) {
+          return { ...conv, title };
+        }
+        return conv;
+      });
+      
+      return updatedConversations;
+    });
+    
+    addTerminalLog(`Updated conversation title: ${title}`);
+  };
+
+  // Remove this duplicate function and use updateChatTitle instead
+  const handleUpdateChatTitle = updateChatTitle;
+
   // Don't render anything server-side or until client is mounted
   if (!isMounted) {
-    return <div className="min-h-screen bg-gray-50 dark:bg-gray-900"></div>;
+    return <div suppressHydrationWarning className="min-h-screen"></div>;
   }
 
   return (
@@ -217,7 +235,7 @@ function Page() {
       <div className="flex h-screen">
         {/* Sidebar */}
         {sidebarOpen && (
-          <div className={`transition-[width] duration-300 ${sidebarOpen ? 'tranblue-x-0' : '-tranblue-x-full'} ${isTemporaryChat ? 'opacity-50 pointer-events-none' : ''}`}>
+          <div className={`transition-[width] duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} ${isTemporaryChat ? 'opacity-50 pointer-events-none' : ''}`}>
             <ConversationSidebar 
               conversations={conversations}
               activeConversationId={activeConversationId}
@@ -250,6 +268,7 @@ function Page() {
               isTemporaryChat={isTemporaryChat}
               addTerminalLog={addTerminalLog}
               terminalOpen={terminalOpen}
+              onUpdateChatTitle={handleUpdateChatTitle}
             />
           </div>
         </div>

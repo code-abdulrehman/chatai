@@ -107,7 +107,7 @@ export default function SettingsModal({ onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center p-4 z-50">
       <div className={`dark:bg-gray-800 dark:text-white bg-white text-gray-900 rounded-lg shadow-xl max-w-xl w-full max-h-[90vh] overflow-y-auto`}>
         <div className="p-6">
           <div className="flex justify-between items-center mb-6">
@@ -240,11 +240,12 @@ export default function SettingsModal({ onClose }) {
               {/* API Key */}
               <div>
                 <label className="block text-sm font-medium mb-1">
-                  API Key (Optional)
+                  API Key<small className="text-red-500 text-xl">*</small>
                 </label>
                 <input
                   type="password"
                   name="apiKey"
+                  required
                   value={settings.apiKey}
                   onChange={handleChange}
                   placeholder="Enter your API key"

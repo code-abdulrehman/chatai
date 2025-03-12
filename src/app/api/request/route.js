@@ -141,7 +141,11 @@ You are a helpful assistant. Provide direct, clear responses without using secti
       return NextResponse.json({
         content: content,
         model: model,
-        usage: { total_tokens: apiResponse.usageMetadata?.totalTokenCount || 0 },
+        usage: { 
+          prompt_tokens: apiResponse.usageMetadata?.promptTokenCount || 0,
+          completion_tokens: apiResponse.usageMetadata?.candidatesTokenCount || 0,
+          total_tokens: apiResponse.usageMetadata?.totalTokenCount || 0
+        },
         timing: Date.now() - startTime
       });
     }
