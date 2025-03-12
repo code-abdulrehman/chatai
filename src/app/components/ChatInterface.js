@@ -571,10 +571,10 @@ export default function ChatInterface({
                   : msg.role === 'system' && msg.isError
                     ? 'bg-red-50 dark:bg-red-900/30 border border-red-100 dark:border-red-800'
                     : 'bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700'
-              } p-3 relative group hover:shadow-md transition-shadow duration-200`}>
+              } relative group hover:shadow-md transition-shadow duration-200`}>
                 {/* Message header with model info */}
-                <div className="flex items-center justify-between mb-2 text-xs border-b pb-2 dark:border-gray-700 border-gray-200">
-                  <div className="flex items-center">
+                <div className="flex items-center justify-between mb-2 text-xs border-b pb-2 dark:border-gray-700 border-gray-200 p-2">
+                  <div className="flex items-center ">
                     <span className={`font-medium pr-12 ${
                       msg.role === 'user' 
                         ? 'text-blue-600 dark:text-blue-400' 
@@ -594,7 +594,7 @@ export default function ChatInterface({
                 </div>
                 
                 {/* Message content with markdown */}
-                <div className="markdown-content prose dark:prose-invert prose-sm max-w-none">
+                <div className="markdown-content prose dark:prose-invert prose-sm max-w-none p-2">
                   {msg.role === 'assistant' && isStreaming && index === messages.length - 1 ? (
                     <div dangerouslySetInnerHTML={{ __html: renderMarkdown(streamingText) }} />
                   ) : (
@@ -616,7 +616,7 @@ export default function ChatInterface({
                 
                 {/* Message footer with metadata */}
                 {msg.timestamp && (
-                  <div className={`flex justify-between items-center text-xs text-gray-500 dark:text-gray-400 ${(msg.role === 'system' || msg.role === 'user' ||msg.isError) ? 'border-0  mt-0 pt-0' : ' mt-3 pt-2 border-t dark:border-gray-700 border-gray-200 '}`}>
+                  <div className={`flex justify-between items-center text-xs text-gray-500 dark:text-gray-400 ${(msg.role === 'system' || msg.role === 'user' ||msg.isError) ? 'border-0  mt-0 pt-0' : ' mt-3 p-2 border-t dark:border-gray-700 border-gray-200 '}`}>
                     <div>
                       {msg.isEdited && (
                         <span className="italic">edited</span>
