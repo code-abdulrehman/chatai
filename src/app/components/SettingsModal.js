@@ -108,13 +108,13 @@ export default function SettingsModal({ onClose }) {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className={`${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'} rounded-lg shadow-xl max-w-xl w-full max-h-[90vh] overflow-y-auto`}>
+      <div className={`dark:bg-gray-800 dark:text-white bg-white text-gray-900 rounded-lg shadow-xl max-w-xl w-full max-h-[90vh] overflow-y-auto`}>
         <div className="p-6">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-xl font-bold">Settings</h2>
             <button 
               onClick={onClose}
-              className={`${isDarkMode ? 'text-gray-400 hover:text-gray-300' : 'text-gray-500 hover:text-gray-700'}`}
+              className={`dark:text-gray-400 hover:text-gray-300 text-gray-500 hover:text-gray-700`}
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -155,11 +155,7 @@ export default function SettingsModal({ onClose }) {
                     value={settings.customModelName}
                     onChange={handleChange}
                     placeholder="Enter custom model name"
-                    className={`w-full p-2 mt-2 border rounded-md ${
-                      isDarkMode 
-                        ? 'bg-gray-700 border-gray-600 text-white' 
-                        : 'bg-white border-gray-300 text-gray-900'
-                    }`}
+                    className={`w-full p-2 mt-2 border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white bg-white border-gray-300 text-gray-900`}
                   />
                 )}
               </div>
@@ -176,11 +172,7 @@ export default function SettingsModal({ onClose }) {
                     onChange={handleChange}
                     placeholder="Set a custom system message to control how the AI responds"
                     rows={4}
-                    className={`w-full p-2 border rounded-md ${
-                      isDarkMode 
-                        ? 'bg-gray-700 border-gray-600 text-white' 
-                        : 'bg-white border-gray-300 text-gray-900'
-                    }`}
+                    className={`w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white bg-white border-gray-300 text-gray-900`}
                   />
                 </div>
                 
@@ -195,11 +187,7 @@ export default function SettingsModal({ onClose }) {
                         key={index}
                         type="button"
                         onClick={() => applySystemTemplate(template.text)}
-                        className={`px-2 py-1 text-xs rounded ${
-                          isDarkMode 
-                            ? 'bg-gray-700 hover:bg-gray-600 text-white' 
-                            : 'bg-gray-100 hover:bg-gray-200 text-gray-800'
-                        }`}
+                        className={`px-2 py-1 text-xs rounded dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white bg-gray-100 hover:bg-gray-200 text-gray-800`}
                       >
                         {template.name}
                       </button>
@@ -227,9 +215,7 @@ export default function SettingsModal({ onClose }) {
                   step="0.1"
                   value={settings.temperature}
                   onChange={handleChange}
-                  className={`w-full h-2 rounded-lg appearance-none cursor-pointer mt-2 ${
-                    isDarkMode ? 'bg-gray-700' : 'bg-gray-200'
-                  }`}
+                  className={`w-full h-2 rounded-lg appearance-none cursor-pointer mt-2 dark:bg-gray-700 bg-gray-200`}
                 />
               </div>
               
@@ -246,9 +232,7 @@ export default function SettingsModal({ onClose }) {
                   step="100"
                   value={settings.maxTokens}
                   onChange={handleChange}
-                  className={`w-full h-2 rounded-lg appearance-none cursor-pointer ${
-                    isDarkMode ? 'bg-gray-700' : 'bg-gray-200'
-                  }`}
+                  className={`w-full h-2 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 bg-gray-200`}
                 />
                 <div className={`flex justify-between mt-1 text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                   <span>Shorter</span>
@@ -267,11 +251,7 @@ export default function SettingsModal({ onClose }) {
                   value={settings.apiKey}
                   onChange={handleChange}
                   placeholder="Enter your API key"
-                  className={`w-full p-2 border rounded-md ${
-                    isDarkMode 
-                      ? 'bg-gray-700 border-gray-600 text-white' 
-                      : 'bg-white border-gray-300 text-gray-900'
-                  }`}
+                  className={`w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white bg-white border-gray-300 text-gray-900`}
                 />
                 <p className={`mt-1 text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                   For demo purposes, the API key is not required. In a production app, this would be needed.
@@ -283,17 +263,13 @@ export default function SettingsModal({ onClose }) {
               <button
                 type="button"
                 onClick={onClose}
-                className={`px-4 py-2 rounded-md ${
-                  isDarkMode 
-                    ? 'border border-gray-600 text-gray-300 hover:bg-gray-700' 
-                    : 'border border-gray-300 text-gray-700 hover:bg-gray-50'
-                }`}
+                className={`px-4 py-2 rounded-md dark:border dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 border border-gray-300 text-gray-700 hover:bg-gray-50`}
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                className="px-4 py-2 dark:bg-blue-400 dark:text-white bg-blue-600 text-white rounded-md hover:bg-blue-700"
               >
                 Save Settings
               </button>
