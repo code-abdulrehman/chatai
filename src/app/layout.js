@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "AI API Test App",
+  title: "Chat Ai",
   description: "Testing platform for AI APIs",
 
 };
