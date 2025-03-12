@@ -234,7 +234,7 @@ function Page() {
       <div className="flex h-screen">
         {/* Sidebar */}
         {sidebarOpen && (
-          <div className={`animation-trans transition-[width, transform] duration-300 ${sidebarOpen ? 'translate-x-0 w-86' : '-translate-x-full w-0'} ${isTemporaryChat ? 'opacity-50 pointer-events-none' : ''}`}>
+          <div className={`animation-trans transition-all duration-300 ${sidebarOpen ? 'w-86' : 'w-0'} ${isTemporaryChat ? 'opacity-50 pointer-events-none' : ''}`}>
             <ConversationSidebar 
               conversations={conversations}
               activeConversationId={activeConversationId}

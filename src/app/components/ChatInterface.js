@@ -540,9 +540,9 @@ export default function ChatInterface({
         <div className="px-4 py-4 space-y-4">
           {/* Welcome message */}
           {messages.length === 0 && (
-            <div className="text-center py-10">
-              <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                Welcome to AI Chat
+            <div className="text-center py-10 h-[calc(100vh-20rem)] flex flex-col justify-center items-center dark:border-gray-700">
+              <h2 className="text-3xl font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                Welcome to ChatAI
               </h2>
               {isTemporaryChat ? (
                 <p className="text-gray-500 dark:text-gray-400 mb-4">
@@ -554,7 +554,7 @@ export default function ChatInterface({
                 </p>
               )}
               <p className="text-gray-500 dark:text-gray-400 text-sm">
-                Current model: <span className="font-medium">{currentModel}</span>
+                Current model: <span className="font-medium text-gray-700 dark:text-gray-300">{currentModel}</span>
               </p>
             </div>
           )}
