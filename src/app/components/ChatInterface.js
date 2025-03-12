@@ -534,10 +534,10 @@ export default function ChatInterface({
   if (!mounted) return null;
 
   return (
-    <div className="flex flex-col h-full overflow-hidden relative">
+    <div className="flex flex-col h-full overflow-hidden relative transition-all duration-300">
       {/* Chat messages area - scrollable with dynamic padding for terminal */}
       <div className={`flex-grow overflow-y-auto ${terminalOpen ? 'pb-72' : 'pb-24'} transition-all duration-300`}>
-        <div className="px-4 py-4 space-y-4">
+        <div className="px-4 py-4 space-y-4 mx-auto max-w-4xl">
           {/* Welcome message */}
           {messages.length === 0 && (
             <div className="text-center py-10 h-[calc(100vh-20rem)] flex flex-col justify-center items-center dark:border-gray-700">
@@ -671,8 +671,11 @@ export default function ChatInterface({
         </div>
       </div>
       {/* Message input area - fixed at bottom with better positioning for terminal */}
-      <div className={`p-4 bottom-0 left-0 right-0 z-10 ${terminalOpen ? 'mb-64' : 'mb-0'} transition-all duration-300`}>
+      <div className={`p-4 bottom-0 left-0 right-0 z-10 transition-all duration-300 ease-in-out mb-2 ${
+        terminalOpen ? 'mb-64' : 'mb-0'
+      }`}>
         <div className="max-w-4xl mx-auto flex items-end">
+          <div  className={`flex-grow resize-none rounded-lg h-[124px] dark:bg-gray-700 border dark:border-gray-600 dark:text-gray-200 bg-white border border-gray-300 text-gray-800 focus:ring-transparent focus:border-transparent`}>
           <textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}
@@ -683,34 +686,12 @@ export default function ChatInterface({
               }
             }}
             placeholder={isLoading || isStreaming ? "AI is responding..." : "Type your message here..."}
-            className={`flex-grow resize-none p-3 rounded-l-lg h-20 dark:bg-gray-700 border dark:border-gray-600 dark:text-gray-200 bg-white border border-gray-300 text-gray-800 focus:ring-transparent focus:border-transparent`}
+            className={`w-full resize-none p-3 rounded-l-lg h-20 bg-gray-100 dark:bg-gray-700 dark:text-gray-200 bg-white text-gray-800 focus:ring-transparent focus:border-transparent`}
             rows="2"
             disabled={isLoading || isStreaming}
           ></textarea>
-          <button
-            onClick={handleSubmit}
-            disabled={!message.trim() && !isLoading && !isStreaming}
-            className={`p-3 rounded-r-lg h-20 ${
-              !message.trim() && !isLoading && !isStreaming
-                ? 'bg-blue-400 cursor-not-allowed' 
-                : isLoading || isStreaming
-                  ? 'bg-red-600 hover:bg-red-700'
-                  : 'bg-blue-600 hover:bg-blue-700'
-            } text-white transition-colors`}
-          >
-            {isLoading || isStreaming ? (
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="6" y="6" width="12" height="12"></rect>
-              </svg>
-            ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="22" y1="2" x2="11" y2="13"></line>
-                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-              </svg>
-            )}
-          </button>
-        </div>
-        <div className="max-w-4xl mx-auto text-xs dark:text-gray-500 text-gray-400 mt-1 pl-1">
+          <div className="flex justify-between items-center px-1">
+          <div className="max-w-2xl text-xs dark:text-gray-500 text-gray-400 mt-1 pl-1">
           {isLoading || isStreaming ? (
             <span>Click the stop button to cancel the response</span>
           ) : (
@@ -719,6 +700,31 @@ export default function ChatInterface({
           {isTemporaryChat && (
             <span className="ml-2 text-amber-500">• Temporary chat (not saved)</span>
           )}
+        </div>
+          <button
+            onClick={handleSubmit}
+            disabled={!message.trim() && !isLoading && !isStreaming}
+            className={`flex justify-center items-center rounded-lg h-8 w-8 ${
+              !message.trim() && !isLoading && !isStreaming
+                ? 'bg-blue-400 cursor-not-allowed' 
+                : isLoading || isStreaming
+                  ? 'bg-red-600 hover:bg-red-700'
+                  : 'bg-blue-600 hover:bg-blue-700'
+            } text-white transition-colors`}
+          >
+            {isLoading || isStreaming ? (
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="6" y="6" width="12" height="12"></rect>
+              </svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            )}
+          </button>
+          </div>
+          </div>
         </div>
       </div>
 

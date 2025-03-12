@@ -233,18 +233,22 @@ function Page() {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 dark:text-white text-gray-900">
       <div className="flex h-screen">
         {/* Sidebar */}
-        {sidebarOpen && (
-          <div className={`animation-trans transition-all duration-300 ${sidebarOpen ? 'w-86' : 'w-0'} ${isTemporaryChat ? 'opacity-50 pointer-events-none' : ''}`}>
-            <ConversationSidebar 
-              conversations={conversations}
-              activeConversationId={activeConversationId}
-              onSelectConversation={selectConversation}
-              onNewConversation={startNewConversation}
-              onDeleteConversation={deleteConversation}
-              isTemporaryChat={isTemporaryChat}
-            />
-          </div>
-        )}
+<div 
+  className={`animation-trans transition-all duration-300 overflow-hidden border-r border-gray-200 dark:border-gray-700 
+    ${sidebarOpen ? 'w-86' : 'w-0'} 
+    ${isTemporaryChat ? 'opacity-50 pointer-events-none' : ''}`}
+>
+  <div className={`w-86`}>
+    <ConversationSidebar 
+      conversations={conversations}
+      activeConversationId={activeConversationId}
+      onSelectConversation={selectConversation}
+      onNewConversation={startNewConversation}
+      onDeleteConversation={deleteConversation}
+      isTemporaryChat={isTemporaryChat}
+    />
+  </div>
+</div>
         
         {/* Main Content */}
         <div className="flex-1 flex flex-col overflow-hidden transition-[width] duration-300  dark:bg-gray-900 dark:text-white text-gray-900 bg-white">

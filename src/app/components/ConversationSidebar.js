@@ -24,7 +24,7 @@ export default function ConversationSidebar({
   };
 
   return (
-    <div className="flex flex-col h-full transition-[width] duration-300 border-r dark:border-gray-700  dark:bg-gray-900 dark:text-white text-gray-900 bg-white">
+    <div className="flex flex-col h-full transition-[width] duration-300 dark:bg-gray-900 dark:text-white text-gray-900 bg-white">
       {/* Sidebar Header */}
       <div className="p-4 border-b dark:border-gray-700">
         <button
