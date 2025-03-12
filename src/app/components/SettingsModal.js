@@ -251,9 +251,6 @@ export default function SettingsModal({ onClose }) {
                   placeholder="Enter your API key"
                   className={`w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white bg-white border-gray-300 text-gray-900`}
                 />
-                <p className={`mt-1 text-xs dark:text-gray-400 text-gray-500`}>
-                  For demo purposes, the API key is not required. In a production app, this would be needed.
-                </p>
               </div>
             </div>
             
