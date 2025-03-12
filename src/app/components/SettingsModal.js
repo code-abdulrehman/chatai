@@ -3,17 +3,6 @@
 import { useState, useEffect } from 'react';
 
 export default function SettingsModal({ onClose }) {
-  const [settings, setSettings] = useState({
-    model: 'claude-3-7-sonnet',
-    customModelName: '',
-    temperature: 0.7,
-    maxTokens: 1000,
-    apiKey: '',
-    systemMessage: ''
-  });
-  const [isMounted, setIsMounted] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(true);
-  
   // Common system message templates
   const systemMessageTemplates = [
     { name: "Default Assistant", 
@@ -29,6 +18,17 @@ export default function SettingsModal({ onClose }) {
     { name: "Business Advisor", 
       text: "You are a business advisor with experience in strategy, management, marketing, and finance." }
   ];
+  const [settings, setSettings] = useState({
+    model: 'claude-3-7-sonnet',
+    customModelName: '',
+    temperature: 0.7,
+    maxTokens: 1000,
+    apiKey: '',
+    systemMessage: systemMessageTemplates[0].text
+  });
+  const [isMounted, setIsMounted] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
+  
 
   useEffect(() => {
     setIsMounted(true);
@@ -133,11 +133,8 @@ export default function SettingsModal({ onClose }) {
                   name="model"
                   value={settings.model}
                   onChange={handleChange}
-                  className={`w-full p-2 border rounded-md ${
-                    isDarkMode 
-                      ? 'bg-gray-700 border-gray-600 text-white' 
-                      : 'bg-white border-gray-300 text-gray-900'
-                  }`}
+                  className={`w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white bg-white border-gray-300 text-gray-900`}
+
                 >
                   <option value="claude-3-7-sonnet">Claude 3.7 Sonnet</option>
                   <option value="claude-3-opus">Claude 3 Opus</option>
@@ -202,7 +199,7 @@ export default function SettingsModal({ onClose }) {
                   <label className="block text-sm font-medium">
                     Temperature: {settings.temperature.toFixed(1)}
                   </label>
-                  <span className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                  <span className={`text-xs dark:text-gray-400 text-gray-500`}>
                     {settings.temperature < 0.3 ? 'More focused' : 
                      settings.temperature > 0.7 ? 'More creative' : 'Balanced'}
                   </span>
@@ -234,7 +231,7 @@ export default function SettingsModal({ onClose }) {
                   onChange={handleChange}
                   className={`w-full h-2 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 bg-gray-200`}
                 />
-                <div className={`flex justify-between mt-1 text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                <div className={`flex justify-between mt-1 text-xs dark:text-gray-400 text-gray-500`}>
                   <span>Shorter</span>
                   <span>Longer</span>
                 </div>
@@ -253,7 +250,7 @@ export default function SettingsModal({ onClose }) {
                   placeholder="Enter your API key"
                   className={`w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white bg-white border-gray-300 text-gray-900`}
                 />
-                <p className={`mt-1 text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                <p className={`mt-1 text-xs dark:text-gray-400 text-gray-500`}>
                   For demo purposes, the API key is not required. In a production app, this would be needed.
                 </p>
               </div>
