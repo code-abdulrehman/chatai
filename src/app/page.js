@@ -222,7 +222,6 @@ function Page() {
     addTerminalLog(`Updated conversation title: ${title}`);
   };
 
-  // Remove this duplicate function and use updateChatTitle instead
   const handleUpdateChatTitle = updateChatTitle;
 
   // Don't render anything server-side or until client is mounted
@@ -235,7 +234,7 @@ function Page() {
       <div className="flex h-screen">
         {/* Sidebar */}
         {sidebarOpen && (
-          <div className={`transition-[width] duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} ${isTemporaryChat ? 'opacity-50 pointer-events-none' : ''}`}>
+          <div className={`animation-trans transition-[width, transform] duration-300 ${sidebarOpen ? 'translate-x-0 w-86' : '-translate-x-full w-0'} ${isTemporaryChat ? 'opacity-50 pointer-events-none' : ''}`}>
             <ConversationSidebar 
               conversations={conversations}
               activeConversationId={activeConversationId}

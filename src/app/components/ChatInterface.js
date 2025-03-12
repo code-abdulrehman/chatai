@@ -357,7 +357,7 @@ export default function ChatInterface({
       };
 
       // Extract title from the first AI response if this is a new chat
-      if (!autoTitleGenerated && messages.length <= 2) {
+      if (!autoTitleGenerated && messages.length <= 12) {
         // Only extract title from the first exchange
         try {
           // Get first 6-10 words for the title
@@ -393,7 +393,6 @@ export default function ChatInterface({
       // Enhanced error handling
       setIsLoading(false);
       setIsStreaming(false);
-      
       // Determine if it's a network error (API not found)
       const errorMessage = error.name === 'TypeError' && error.message.includes('fetch') 
         ? 'API endpoint not found. Please check your connection or server status.'
@@ -426,6 +425,12 @@ export default function ChatInterface({
       addTerminalLog(errorMessage, "error");
     }
   };
+  useEffect(() => {
+    if (messages.length === 0) {
+      setAutoTitleGenerated(false);
+    }
+  }, [messages]);
+  
 
   // Copy message content to clipboard
   const copyToClipboard = (content, id) => {

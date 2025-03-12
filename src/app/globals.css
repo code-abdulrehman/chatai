@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 @import "tailwindcss";
-
+body {
+  overflow: hidden;
+}
 .typing-indicator {
   display: flex;
   align-items: center;
@@ -152,4 +154,9 @@ html, body {
   0% { opacity: 0; }
   50% { opacity: 1; }
   100% { opacity: 0; }
+}
+
+.animation-trans {
+  transition: all 0.3s ease;
+  transition-property: width, transform, opacity;
 }
