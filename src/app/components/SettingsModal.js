@@ -136,13 +136,15 @@ export default function SettingsModal({ onClose }) {
                   className={`w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white bg-white border-gray-300 text-gray-900`}
 
                 >
+                  <option value="claude-3-5-sonnet">Claude 3.5 Sonnet</option>
                   <option value="claude-3-7-sonnet">Claude 3.7 Sonnet</option>
                   <option value="claude-3-opus">Claude 3 Opus</option>
                   <option value="llama-3.3-70b-versatile">Llama 3.3 70B</option>
                   <option value="gemini-2.0-flash">Gemini 2.0 Flash</option>
                   <option value="gpt-4o">GPT-4o</option>
+                  <option value="gpt-4o-mini">GPT-4o Mini</option>
                   <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
-                  <option value="custom">Custom</option>
+                  {/* <option value="custom">Custom</option> */}
                 </select>
                 
                 {settings.model === 'custom' && (
@@ -169,7 +171,7 @@ export default function SettingsModal({ onClose }) {
                     onChange={handleChange}
                     placeholder="Set a custom system message to control how the AI responds"
                     rows={4}
-                    className={`w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white bg-white border-gray-300 text-gray-900`}
+                    className={`w-full min-h-[70px] max-h-[140px] p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white bg-white border-gray-300 text-gray-900`}
                   />
                 </div>
                 
