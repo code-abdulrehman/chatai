@@ -1,37 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# AI API Test App
+
+A versatile Next.js application for testing and comparing different AI language models through a unified interface.
+
+![Next.js](https://img.shields.io/badge/Next.js-15.2.2-black) ![React](https://img.shields.io/badge/React-19.0.0-blue) ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.0.12-38b2ac)
+
+## Features
+
+- 🤖 Test multiple AI models including:
+  - OpenAI GPT models
+  - Anthropic Claude models
+  - Google Gemini models
+  - Llama models via Groq
+  - Custom API endpoints
+- 💬 Conversation management with history
+- ⚙️ Configurable settings for each model
+- 📊 Performance metrics (token usage, response time)
+- 📱 Responsive design for both desktop and mobile
+- 🖥️ Interactive terminal for system logs
+- 🔄 Temporary chat mode for testing without saving
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js 18.0.0 or higher
+- npm, yarn, or pnpm
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+1. Clone the repository
+   ```bash
+   git clone https://github.com/yourusername/ai-api-test-app.git
+   cd ai-api-test-app
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. Install dependencies
+   ```bash
+   npm install
+   # or
+   yarn install
+   # or
+   pnpm install
+   ```
 
-## Learn More
+3. Create a `.env.local` file in the root directory with your API keys (optional)
+   ```
+   # Example:
+   OPENAI_API_KEY=your_openai_api_key
+   ANTHROPIC_API_KEY=your_anthropic_api_key
+   GOOGLE_API_KEY=your_google_api_key
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. Start the development server
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   # or
+   pnpm dev
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Usage
 
-## Deploy on Vercel
+1. Enter your API key for the model you want to test in the Settings modal
+2. Select a model from the dropdown menu
+3. Type your message in the chat interface
+4. View the AI's response and performance metrics
+5. Create and manage multiple conversations using the sidebar
+6. Toggle the terminal to view system logs
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Architecture
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# chatai
+- **Next.js**: React framework for server-side rendering and API routes
+- **React**: Frontend UI library
+- **TailwindCSS**: Utility-first CSS framework for styling
+- **API Route**: Secure proxy to communicate with AI providers
+- **LocalStorage**: For persistent conversation history
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- [Next.js](https://nextjs.org/) for the React framework
+- [TailwindCSS](https://tailwindcss.com/) for styling
+- Various AI providers for their APIs

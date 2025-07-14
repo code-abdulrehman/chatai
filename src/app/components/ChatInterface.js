@@ -534,26 +534,26 @@ export default function ChatInterface({
   if (!mounted) return null;
 
   return (
-    <div className="flex flex-col h-full overflow-hidden relative transition-all duration-300">
+    <div className="relative flex flex-col h-full overflow-hidden transition-all duration-300">
       {/* Chat messages area - scrollable with dynamic padding for terminal */}
       <div className={`flex-grow overflow-y-auto ${terminalOpen ? 'pb-72' : 'pb-24'} transition-all duration-300`}>
-        <div className="px-4 py-4 space-y-4 mx-auto max-w-4xl">
+        <div className="max-w-4xl px-4 py-4 mx-auto space-y-4">
           {/* Welcome message */}
           {messages.length === 0 && (
             <div className="text-center py-10 h-[calc(100vh-20rem)] flex flex-col justify-center items-center dark:border-gray-700">
-              <h2 className="text-3xl font-semibold text-gray-700 dark:text-gray-300 mb-2">
+              <h2 className="mb-2 text-3xl font-semibold text-gray-700 dark:text-gray-300">
                 Welcome to ChatAI
               </h2>
               {isTemporaryChat ? (
-                <p className="text-gray-500 dark:text-gray-400 mb-4">
+                <p className="mb-4 text-gray-500 dark:text-gray-400">
                   Start a temporary chat with the AI assistant below. This chat will not be saved.
                 </p>
               ) : (
-                <p className="text-gray-500 dark:text-gray-400 mb-4">
+                <p className="mb-4 text-gray-500 dark:text-gray-400">
                   Start a conversation with the AI assistant below.
                 </p>
               )}
-              <p className="text-gray-500 dark:text-gray-400 text-sm">
+              <p className="text-sm text-gray-500 dark:text-gray-400">
                 Current model: <span className="font-medium text-gray-700 dark:text-gray-300">{currentModel}</span>
               </p>
             </div>
@@ -573,7 +573,7 @@ export default function ChatInterface({
                     : 'bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700'
               } relative group hover:shadow-md transition-shadow duration-200`}>
                 {/* Message header with model info */}
-                <div className="flex items-center justify-between mb-2 text-xs border-b pb-2 dark:border-gray-700 border-gray-200 p-2">
+                <div className="flex items-center justify-between p-2 pb-2 mb-2 text-xs border-b border-gray-200 dark:border-gray-700">
                   <div className="flex items-center ">
                     <span className={`font-medium pr-12 ${
                       msg.role === 'user' 
@@ -594,17 +594,17 @@ export default function ChatInterface({
                 </div>
                 
                 {/* Message content with markdown */}
-                <div className="markdown-content prose dark:prose-invert prose-sm max-w-none p-2">
+                <div className="p-2 prose-sm prose markdown-content dark:prose-invert max-w-none">
                   {msg.role === 'assistant' && isStreaming && index === messages.length - 1 ? (
                     <div dangerouslySetInnerHTML={{ __html: renderMarkdown(streamingText) }} />
                   ) : (
                     <div dangerouslySetInnerHTML={{ __html: renderMarkdown(msg.content) }} />
                   )}
                   {msg.role === 'assistant' && isStreaming && index === messages.length - 1 && (
-                    <span className="animate-pulse ml-1">▌</span>
+                    <span className="ml-1 animate-pulse">▌</span>
                   )}
                 {((isLoading && !isStreaming) && msg.role === 'assistant' && index === messages.length - 1  ) && (
-                  <div className="flex items-center justify-center space-x-2 my-4">
+                  <div className="flex items-center justify-center my-4 space-x-2">
                     <div className="flex space-x-2">
                       <div className="w-3 h-3 bg-blue-500 rounded-full animate-bounce"></div>
                       <div className="w-3 h-3 bg-blue-500 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
@@ -625,7 +625,7 @@ export default function ChatInterface({
                     <div className="flex items-center space-x-3">
                       {msg.role === 'assistant' && msg.tokens && (
                         <span title="Number of tokens in this response">
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="inline w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
                           </svg>
                           {msg.tokens.completion} tokens
@@ -634,7 +634,7 @@ export default function ChatInterface({
                       
                       {msg.role === 'assistant' && msg.responseTime && (
                         <span title="Response time">
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="inline w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
                           {(msg.responseTime / 1000).toFixed(1)}s
@@ -645,7 +645,7 @@ export default function ChatInterface({
                       {msg.role === 'assistant' && (
                         <button 
                           onClick={() => copyToClipboard(msg.content, index)}
-                          className="opacity-60 hover:opacity-100 transition-opacity p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700"
+                          className="p-1 transition-opacity rounded opacity-60 hover:opacity-100 hover:bg-gray-200 dark:hover:bg-gray-700"
                           title="Copy to clipboard"
                         >
                           {copiedMessageId === index ? (
@@ -674,8 +674,8 @@ export default function ChatInterface({
       <div className={`p-4 bottom-0 left-0 right-0 z-10 transition-all duration-300 ease-in-out mb-2 ${
         terminalOpen ? 'mb-64' : 'mb-0'
       }`}>
-        <div className="max-w-4xl mx-auto flex items-end">
-          <div  className={`flex-grow resize-none rounded-lg h-[124px] dark:bg-gray-700 border dark:border-gray-600 dark:text-gray-200 bg-white border border-gray-300 text-gray-800 focus:ring-transparent focus:border-transparent`}>
+        <div className="flex items-end max-w-4xl mx-auto">
+          <div  className={`flex-grow resize-none rounded-lg h-[124px] dark:bg-gray-700 border dark:border-gray-600 dark:text-gray-200 bg-white border-gray-300 text-gray-800 focus:ring-transparent focus:border-transparent`}>
           <textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}
@@ -686,12 +686,12 @@ export default function ChatInterface({
               }
             }}
             placeholder={isLoading || isStreaming ? "AI is responding..." : "Type your message here..."}
-            className={`w-full resize-none p-3 rounded-l-lg h-20 bg-gray-100 dark:bg-gray-700 dark:text-gray-200 bg-white text-gray-800 focus:ring-transparent focus:border-transparent`}
+            className={`w-full resize-none p-3 rounded-lg h-20 bg-gray-100 dark:bg-gray-700 dark:text-gray-200 text-gray-800 focus:ring-transparent focus:border-transparent`}
             rows="2"
             disabled={isLoading || isStreaming}
           ></textarea>
-          <div className="flex justify-between items-center px-1">
-          <div className="max-w-2xl text-xs dark:text-gray-500 text-gray-400 mt-1 pl-1">
+          <div className="flex items-center justify-between px-1">
+          <div className="max-w-2xl pl-1 mt-1 text-xs text-gray-400 dark:text-gray-500">
           {isLoading || isStreaming ? (
             <span>Click the stop button to cancel the response</span>
           ) : (

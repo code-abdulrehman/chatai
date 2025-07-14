@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 @import "tailwindcss";
 body {
   overflow: hidden;
@@ -52,19 +50,19 @@ button {
 
 /* Markdown content styling */
 .markdown-content h1 {
-  @apply text-2xl font-bold mt-4 mb-2;
+  @apply mt-4 mb-2 text-2xl font-bold;
 }
 .markdown-content h2 {
-  @apply text-xl font-bold mt-4 mb-2;
+  @apply mt-4 mb-2 text-xl font-bold;
 }
 .markdown-content h3 {
-  @apply text-lg font-bold mt-3 mb-2;
+  @apply mt-3 mb-2 text-lg font-bold;
 }
 .markdown-content p {
   @apply my-2;
 }
 .markdown-content ul, .markdown-content ol {
-  @apply ml-6 my-2;
+  @apply my-2 ml-6;
 }
 .markdown-content ul {
   @apply list-disc;
@@ -76,16 +74,16 @@ button {
   @apply my-1;
 }
 .markdown-content pre {
-  @apply bg-gray-100 dark:bg-slate-800 p-4 rounded my-3 overflow-auto;
+  @apply p-4 my-3 overflow-auto bg-gray-100 rounded dark:bg-slate-800;
 }
 .markdown-content code {
   @apply font-mono text-sm bg-gray-100 dark:bg-slate-800 px-1 py-0.5 rounded;
 }
 .markdown-content pre code {
-  @apply bg-transparent p-0;
+  @apply p-0 bg-transparent;
 }
 .markdown-content blockquote {
-  @apply border-l-4 border-gray-300 dark:border-gray-600 pl-3 py-1 my-2 text-gray-700 dark:text-gray-300;
+  @apply py-1 pl-3 my-2 text-gray-700 border-l-4 border-gray-300 dark:border-gray-600 dark:text-gray-300;
 }
 .markdown-content a {
   @apply text-slate-600 dark:text-slate-400 hover:underline;
@@ -93,7 +91,7 @@ button {
 
 /* Focus styles for accessibility */
 button:focus, textarea:focus, input:focus, select:focus {
-  @apply outline-none ring-2 ring-slate-500;
+  @apply outline-none;
 }
 
 /* Chat bubbles styling */
